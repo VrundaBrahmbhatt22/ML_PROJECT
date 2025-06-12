@@ -4,6 +4,8 @@ from src.mlproject.exception import CustomException
 from src.mlproject.logger import logging
 import pandas as pd
 from dotenv import load_dotenv
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import r2_score
 import pymysql
 import pickle
 import numpy as np
@@ -45,7 +47,7 @@ def save_object(file_path, obj):
 
     except Exception as e:
         raise CustomException(e, sys)
-'''
+
 
 def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     try:
@@ -77,4 +79,3 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
 
     except Exception as e:
         raise CustomException(e, sys)
-'''
