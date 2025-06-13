@@ -1,3 +1,4 @@
+import os
 import sys
 import pandas as pd
 from src.mlproject.exception import CustomException
@@ -6,10 +7,14 @@ from src.mlproject.utils import load_object
 class PredictPipeline:
     def __init__(self):
         pass
-    def predict(self,features):
+
+    def predict(self, features):
         try:
-            model_path = 'artifacts\\model.pkl'
-            preprocessor_path = 'artifacts\\preprocessor.pkl'
+            # Dynamically build absolute paths
+            base_dir = os.getcwd()
+
+            model_path = os.path.join(base_dir, 'artifacts', 'model.pkl')
+            preprocessor_path = os.path.join(base_dir, 'artifacts', 'preprocessor.pkl')
 
             model = load_object(file_path=model_path)
             preprocessor = load_object(file_path=preprocessor_path)
@@ -55,4 +60,3 @@ class CustomData:
             return pd.DataFrame(custom_data_input_dict)
         except Exception as e:
             raise CustomException(e, sys)
-  
